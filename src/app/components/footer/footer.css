@@ -1,0 +1,125 @@
+.footer {
+  background: #FFFBF0;
+  color: #2b2b2b;
+  padding: 2rem 2rem 1.5rem 2rem;
+  font-size: 1.1rem; 
+  height: 40vh; 
+  min-height: 350px; 
+  box-sizing: border-box;
+  margin-top: 8rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto; /* Esto centra este bloque vertical y horizontalmente en el espacio sobrante */
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 280px;
+  align-items: center;
+}
+
+.footer__logo {
+  width: 96px; /* Logo más grande */
+  height: 96px;
+  border-radius: 16px;
+  object-fit: contain;
+  display: block;
+  transform: scale(2.2);
+  transform-origin: center;
+  margin-bottom: -1.8rem;
+}
+
+.footer__logo[ngsrc] {
+  display: block;
+}
+
+.footer__name {
+  font-weight: 700;
+  font-size: 1.5rem; /* Nombre más grande */
+}
+
+.footer__tagline {
+  color: rgba(43, 43, 43, 0.75);
+  font-size: 1.1rem;
+  margin-top: 0.25rem;
+}
+
+.footer__nav {
+  display: flex;
+  gap: 4rem;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer__section {
+  min-width: 160px;
+}
+
+.footer__section-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.footer__link {
+  display: block;
+  color: rgba(43, 43, 43, 0.85);
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem; /* Links más grandes */
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: #45200B;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  color: rgba(43, 43, 43, 0.75);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__social {
+  color: rgba(43, 43, 43, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.footer__social:hover {
+  color: #45200B;
+}

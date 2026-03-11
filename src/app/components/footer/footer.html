@@ -1,0 +1,49 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img
+        class="footer__logo"
+        ngSrc="/logoMasco.png"
+        width="64"
+        height="64"
+        alt="MascoPerdidas logo"
+      />
+      <div>
+        <div class="footer__name">MascoPerdidas</div>
+        <div class="footer__tagline">Encuentra, reporta y rescata mascotas perdidas.</div>
+      </div>
+    </div>
+
+    <div class="footer__nav">
+      <div class="footer__section">
+        <div class="footer__section-title">Explorar</div>
+        <a routerLink="/" class="footer__link">Mapa</a>
+        <a routerLink="/" class="footer__link">Reportes</a>
+        <a routerLink="/login" class="footer__link">Iniciar sesión</a>
+      </div>
+
+      <div class="footer__section">
+        <div class="footer__section-title">Comunidad</div>
+        <a href="#" class="footer__link" aria-label="Ver consejos de seguridad">Consejos de seguridad</a>
+        <a href="#" class="footer__link" aria-label="Contactar a soporte">Soporte</a>
+        <a href="#" class="footer__link" aria-label="Ver preguntas frecuentes">FAQ</a>
+      </div>
+
+      <div class="footer__section">
+        <div class="footer__section-title">Legal</div>
+        <a href="#" class="footer__link">Términos</a>
+        <a href="#" class="footer__link">Privacidad</a>
+        <a href="#" class="footer__link">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div>© {{ year }} MascoPerdidas. Todos los derechos reservados.</div>
+    <div class="footer__socials" aria-label="Redes sociales">
+      <a href="#" aria-label="Visitar Facebook" class="footer__social">Facebook</a>
+      <a href="#" aria-label="Visitar Instagram" class="footer__social">Instagram</a>
+      <a href="#" aria-label="Visitar Twitter" class="footer__social">Twitter</a>
+    </div>
+  </div>
+</footer>
