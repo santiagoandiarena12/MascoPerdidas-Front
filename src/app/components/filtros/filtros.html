@@ -1,0 +1,73 @@
+<div class="filtros-container">
+  <h2 class="filtros-titulo">Filtros</h2>
+
+  <!-- Tipo: Pills -->
+  <div class="filtros-seccion">
+    <label class="filtros-label">Tipo de reporte</label>
+    <div class="filtros-pills">
+      <button
+        type="button"
+        class="pill"
+        [class.pill--perdidas]="tipoSeleccionado() === 'perdidas'"
+        (click)="seleccionarTipo('perdidas')"
+      >
+        Perdidas
+      </button>
+      <button
+        type="button"
+        class="pill"
+        [class.pill--encontradas]="tipoSeleccionado() === 'encontradas'"
+        (click)="seleccionarTipo('encontradas')"
+      >
+        Encontradas
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="aplicarFiltros()">
+    <!-- Especie -->
+    <div class="filtros-seccion">
+      <label class="filtros-label" for="especie">Especie</label>
+      <select id="especie" formControlName="especie" class="filtros-select">
+        <option value="">Todas</option>
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <!-- Sexo -->
+    <div class="filtros-seccion">
+      <label class="filtros-label" for="sexo">Sexo</label>
+      <select id="sexo" formControlName="sexo" class="filtros-select">
+        <option value="">Todos</option>
+        <option value="macho">Macho</option>
+        <option value="hembra">Hembra</option>
+        <option value="desconocido">Desconocido</option>
+      </select>
+    </div>
+
+    <!-- Distancia -->
+    <div class="filtros-seccion">
+      <label class="filtros-label">Distancia</label>
+      <div class="filtros-distancia">
+        @for (d of distancias; track d) {
+          <button
+            type="button"
+            class="distancia-chip"
+            [class.distancia-chip--activo]="form.controls.distancia.value === d"
+            (click)="form.controls.distancia.setValue(d)"
+          >
+            {{ d }} km
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="filtros-acciones">
+      <button type="button" class="btn-limpiar" (click)="limpiarFiltros()">Limpiar</button>
+      <button type="submit" class="btn-aplicar">Aplicar Filtros</button>
+    </div>
+  </form>
+</div>
