@@ -2,16 +2,67 @@
   <header class="reportes-header">
     <h1>Reportes de mascotas</h1>
     <p>
-      Vista preliminar con reportes de ejemplo. Próximamente se conectará con los datos reales que envíen las personas
-      usuarias.
+      Vista preliminar con reportes de ejemplo. Próximamente se conectará con los datos reales que
+      envíen las personas usuarias.
     </p>
   </header>
+
+  <!-- Boton flotante de filtros -->
+  <button class="btn-filtros-flotante" (click)="toggleDrawer()" aria-label="Abrir filtros">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+    </svg>
+    Filtros
+  </button>
+
+  <!-- Overlay -->
+  @if (drawerAbierto()) {
+    <div class="drawer-overlay" (click)="toggleDrawer()"></div>
+  }
+
+  <!-- Drawer -->
+  <aside class="drawer" [class.drawer--abierto]="drawerAbierto()">
+    <div class="drawer-header">
+      <button class="drawer-cerrar" (click)="toggleDrawer()" aria-label="Cerrar filtros">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <app-filtros (filtrosAplicados)="onFiltrosAplicados($event)" />
+  </aside>
 
   @if (isAuthenticated()) {
     <section class="reportes-form-section" aria-label="Agregar un nuevo reporte de mascota">
       <h2>Agregar reporte</h2>
 
-      <form class="reportes-form" [formGroup]="reporteForm" (ngSubmit)="onAgregarReporte()" novalidate>
+      <form
+        class="reportes-form"
+        [formGroup]="reporteForm"
+        (ngSubmit)="onAgregarReporte()"
+        novalidate
+      >
         <div class="reportes-form__grid">
           <div class="reportes-form__field">
             <label for="nombre">Nombre de la mascota</label>
@@ -21,7 +72,10 @@
               formControlName="nombre"
               placeholder="Nombre con el que la conocés"
             />
-            @if (reporteForm.controls.nombre.invalid && (reporteForm.controls.nombre.dirty || reporteForm.controls.nombre.touched)) {
+            @if (
+              reporteForm.controls.nombre.invalid &&
+              (reporteForm.controls.nombre.dirty || reporteForm.controls.nombre.touched)
+            ) {
               <p class="reportes-form__error">
                 El nombre es obligatorio y debe tener al menos 2 caracteres.
               </p>
@@ -50,10 +104,11 @@
           <div class="reportes-form__field">
             <label for="fecha">Fecha</label>
             <input id="fecha" type="date" formControlName="fecha" />
-            @if (reporteForm.controls.fecha.invalid && (reporteForm.controls.fecha.dirty || reporteForm.controls.fecha.touched)) {
-              <p class="reportes-form__error">
-                La fecha es obligatoria.
-              </p>
+            @if (
+              reporteForm.controls.fecha.invalid &&
+              (reporteForm.controls.fecha.dirty || reporteForm.controls.fecha.touched)
+            ) {
+              <p class="reportes-form__error">La fecha es obligatoria.</p>
             }
           </div>
 
@@ -65,10 +120,11 @@
               formControlName="zona"
               placeholder="Barrio, referencia o lugar donde se perdió/encontró"
             />
-            @if (reporteForm.controls.zona.invalid && (reporteForm.controls.zona.dirty || reporteForm.controls.zona.touched)) {
-              <p class="reportes-form__error">
-                La zona es obligatoria.
-              </p>
+            @if (
+              reporteForm.controls.zona.invalid &&
+              (reporteForm.controls.zona.dirty || reporteForm.controls.zona.touched)
+            ) {
+              <p class="reportes-form__error">La zona es obligatoria.</p>
             }
           </div>
 
@@ -80,10 +136,12 @@
               formControlName="colorPrincipal"
               placeholder="Ej: Marrón y blanco"
             />
-            @if (reporteForm.controls.colorPrincipal.invalid && (reporteForm.controls.colorPrincipal.dirty || reporteForm.controls.colorPrincipal.touched)) {
-              <p class="reportes-form__error">
-                El color principal es obligatorio.
-              </p>
+            @if (
+              reporteForm.controls.colorPrincipal.invalid &&
+              (reporteForm.controls.colorPrincipal.dirty ||
+                reporteForm.controls.colorPrincipal.touched)
+            ) {
+              <p class="reportes-form__error">El color principal es obligatorio.</p>
             }
           </div>
 
@@ -95,9 +153,13 @@
               formControlName="imagenUrl"
               placeholder="https://ejemplo.com/mascota.jpg"
             />
-            @if (reporteForm.controls.imagenUrl.invalid && (reporteForm.controls.imagenUrl.dirty || reporteForm.controls.imagenUrl.touched)) {
+            @if (
+              reporteForm.controls.imagenUrl.invalid &&
+              (reporteForm.controls.imagenUrl.dirty || reporteForm.controls.imagenUrl.touched)
+            ) {
               <p class="reportes-form__error">
-                La URL de la foto es obligatoria (podrás integrarlo con subida de archivos más adelante).
+                La URL de la foto es obligatoria (podrás integrarlo con subida de archivos más
+                adelante).
               </p>
             }
           </div>
@@ -110,7 +172,10 @@
               formControlName="descripcion"
               placeholder="Contanos cómo es la mascota, señas particulares y cualquier dato útil."
             ></textarea>
-            @if (reporteForm.controls.descripcion.invalid && (reporteForm.controls.descripcion.dirty || reporteForm.controls.descripcion.touched)) {
+            @if (
+              reporteForm.controls.descripcion.invalid &&
+              (reporteForm.controls.descripcion.dirty || reporteForm.controls.descripcion.touched)
+            ) {
               <p class="reportes-form__error">
                 La descripción es obligatoria y debe tener al menos 10 caracteres.
               </p>
@@ -139,12 +204,7 @@
     @for (reporte of reportes(); track reporte.id) {
       <article class="reporte-card">
         <div class="reporte-imagen-wrapper">
-          <img
-            ngSrc="{{ reporte.imagenUrl }}"
-            width="400"
-            height="300"
-            class="reporte-imagen"
-          />
+          <img ngSrc="{{ reporte.imagenUrl }}" width="400" height="300" class="reporte-imagen" />
           <span class="reporte-badge reporte-badge--estado-{{ reporte.estado }}">
             {{ reporte.estado }}
           </span>
@@ -182,4 +242,3 @@
     }
   </section>
 </div>
-

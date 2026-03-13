@@ -1,0 +1,161 @@
+.filtros-container {
+  padding: 1.5rem;
+  font-family: inherit;
+  color: #45200b;
+}
+
+.filtros-titulo {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  color: #45200b;
+}
+
+/* Secciones */
+.filtros-seccion {
+  margin-bottom: 1.25rem;
+}
+
+.filtros-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+  color: #6b4226;
+}
+
+/* Pills de tipo */
+.filtros-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pill {
+  flex: 1;
+  padding: 0.625rem 1rem;
+  border: 2px solid #d6c9b6;
+  border-radius: 9999px;
+  background: transparent;
+  color: #45200b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: #b5a08a;
+}
+
+.pill--perdidas {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #991b1b;
+}
+
+.pill--encontradas {
+  background: #d1fae5;
+  border-color: #34d399;
+  color: #065f46;
+}
+
+/* Select dropdown */
+.filtros-select {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 2px solid #d6c9b6;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #45200b;
+  font-size: 0.875rem;
+  cursor: pointer;
+  appearance: auto;
+  transition: border-color 0.2s ease;
+}
+
+.filtros-select:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Distancia chips */
+.filtros-distancia {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.distancia-chip {
+  padding: 0.5rem 1rem;
+  border: 2px solid #d6c9b6;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #45200b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.distancia-chip:hover {
+  border-color: #10b981;
+}
+
+.distancia-chip--activo {
+  background: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+
+/* Acciones */
+.filtros-acciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.btn-limpiar {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid #d6c9b6;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #45200b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-limpiar:hover {
+  background: #f5ede0;
+}
+
+.btn-aplicar {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #10b981;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-aplicar:hover {
+  background: #059669;
+}
+
+.btn-aplicar:focus-visible,
+.btn-limpiar:focus-visible,
+.pill:focus-visible,
+.distancia-chip:focus-visible,
+.filtros-select:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
