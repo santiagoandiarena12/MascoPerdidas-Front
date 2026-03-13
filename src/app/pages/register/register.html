@@ -1,0 +1,132 @@
+<div class="auth-page">
+  <div class="auth-card" aria-labelledby="register-title">
+    <div class="auth-card__logo-wrapper">
+      <img
+        ngSrc="/logoMasco.png"
+        width="80"
+        height="80"
+        alt="MascoPerdidas logo"
+        class="auth-card__logo"
+      />
+    </div>
+
+    <h1 id="register-title" class="auth-card__title">Crear cuenta</h1>
+    <p class="auth-card__subtitle">
+      Registrate para crear y seguir reportes de mascotas perdidas en MascoPerdidas.
+    </p>
+
+    <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="auth-form__field">
+        <label for="fullName">Nombre completo</label>
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          autocomplete="name"
+          placeholder="Nombre y apellido"
+        />
+
+        @if (
+          registerForm.controls.fullName.invalid &&
+          (registerForm.controls.fullName.dirty || registerForm.controls.fullName.touched)
+        ) {
+          <p class="auth-form__error">
+            @if (registerForm.controls.fullName.errors?.['required']) {
+              <span>El nombre es obligatorio.</span>
+            } @else if (registerForm.controls.fullName.errors?.['minlength']) {
+              <span>El nombre debe tener al menos 3 caracteres.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div class="auth-form__field">
+        <label for="registerEmail">Email</label>
+        <input
+          id="registerEmail"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="tu-correo@ejemplo.com"
+        />
+
+        @if (
+          registerForm.controls.email.invalid &&
+          (registerForm.controls.email.dirty || registerForm.controls.email.touched)
+        ) {
+          <p class="auth-form__error">
+            @if (registerForm.controls.email.errors?.['required']) {
+              <span>El email es obligatorio.</span>
+            } @else if (registerForm.controls.email.errors?.['email']) {
+              <span>Ingresá un email válido.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div class="auth-form__field">
+        <label for="registerPassword">Contraseña</label>
+        <input
+          id="registerPassword"
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          placeholder="Mínimo 8 caracteres y una mayúscula"
+        />
+
+        @if (
+          registerForm.controls.password.invalid &&
+          (registerForm.controls.password.dirty || registerForm.controls.password.touched)
+        ) {
+          <p class="auth-form__error">
+            @if (registerForm.controls.password.errors?.['required']) {
+              <span>La contraseña es obligatoria.</span>
+            } @else if (registerForm.controls.password.errors?.['passwordComplexity']) {
+              <span>La contraseña debe tener al menos 8 caracteres y una mayúscula.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div class="auth-form__field">
+        <label for="confirmPassword">Confirmar contraseña</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+          placeholder="Repetí tu contraseña"
+        />
+
+        @if (
+          registerForm.controls.confirmPassword.invalid &&
+          (registerForm.controls.confirmPassword.dirty || registerForm.controls.confirmPassword.touched)
+        ) {
+          <p class="auth-form__error">
+            @if (registerForm.controls.confirmPassword.errors?.['required']) {
+              <span>Debés confirmar la contraseña.</span>
+            }
+          </p>
+        }
+
+        @if (!registerForm.controls.confirmPassword.errors?.['required'] && passwordMismatch) {
+          <p class="auth-form__error">
+            Las contraseñas no coinciden.
+          </p>
+        }
+      </div>
+
+      <button type="submit" class="auth-form__submit" [disabled]="registerForm.invalid">
+        Crear cuenta
+      </button>
+    </form>
+
+    <div class="auth-card__links">
+      <p class="auth-card__switch">
+        ¿Ya tenés cuenta?
+        <a routerLink="/login" class="auth-card__link">Iniciá sesión</a>
+      </p>
+    </div>
+  </div>
+</div>
+

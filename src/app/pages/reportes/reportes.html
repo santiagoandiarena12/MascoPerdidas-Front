@@ -1,0 +1,185 @@
+<div class="reportes-page">
+  <header class="reportes-header">
+    <h1>Reportes de mascotas</h1>
+    <p>
+      Vista preliminar con reportes de ejemplo. Próximamente se conectará con los datos reales que envíen las personas
+      usuarias.
+    </p>
+  </header>
+
+  @if (isAuthenticated()) {
+    <section class="reportes-form-section" aria-label="Agregar un nuevo reporte de mascota">
+      <h2>Agregar reporte</h2>
+
+      <form class="reportes-form" [formGroup]="reporteForm" (ngSubmit)="onAgregarReporte()" novalidate>
+        <div class="reportes-form__grid">
+          <div class="reportes-form__field">
+            <label for="nombre">Nombre de la mascota</label>
+            <input
+              id="nombre"
+              type="text"
+              formControlName="nombre"
+              placeholder="Nombre con el que la conocés"
+            />
+            @if (reporteForm.controls.nombre.invalid && (reporteForm.controls.nombre.dirty || reporteForm.controls.nombre.touched)) {
+              <p class="reportes-form__error">
+                El nombre es obligatorio y debe tener al menos 2 caracteres.
+              </p>
+            }
+          </div>
+
+          <div class="reportes-form__field">
+            <label for="especie">Especie</label>
+            <select id="especie" formControlName="especie">
+              <option value="">Seleccioná una opción</option>
+              <option value="Perro">Perro</option>
+              <option value="Gato">Gato</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="reportes-form__field">
+            <label for="estado">Estado</label>
+            <select id="estado" formControlName="estado">
+              <option value="">Seleccioná una opción</option>
+              <option value="Perdido">Perdido</option>
+              <option value="Encontrado">Encontrado</option>
+            </select>
+          </div>
+
+          <div class="reportes-form__field">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date" formControlName="fecha" />
+            @if (reporteForm.controls.fecha.invalid && (reporteForm.controls.fecha.dirty || reporteForm.controls.fecha.touched)) {
+              <p class="reportes-form__error">
+                La fecha es obligatoria.
+              </p>
+            }
+          </div>
+
+          <div class="reportes-form__field reportes-form__field--full">
+            <label for="zona">Zona</label>
+            <input
+              id="zona"
+              type="text"
+              formControlName="zona"
+              placeholder="Barrio, referencia o lugar donde se perdió/encontró"
+            />
+            @if (reporteForm.controls.zona.invalid && (reporteForm.controls.zona.dirty || reporteForm.controls.zona.touched)) {
+              <p class="reportes-form__error">
+                La zona es obligatoria.
+              </p>
+            }
+          </div>
+
+          <div class="reportes-form__field">
+            <label for="colorPrincipal">Color principal</label>
+            <input
+              id="colorPrincipal"
+              type="text"
+              formControlName="colorPrincipal"
+              placeholder="Ej: Marrón y blanco"
+            />
+            @if (reporteForm.controls.colorPrincipal.invalid && (reporteForm.controls.colorPrincipal.dirty || reporteForm.controls.colorPrincipal.touched)) {
+              <p class="reportes-form__error">
+                El color principal es obligatorio.
+              </p>
+            }
+          </div>
+
+          <div class="reportes-form__field reportes-form__field--full">
+            <label for="imagenUrl">URL de la foto</label>
+            <input
+              id="imagenUrl"
+              type="url"
+              formControlName="imagenUrl"
+              placeholder="https://ejemplo.com/mascota.jpg"
+            />
+            @if (reporteForm.controls.imagenUrl.invalid && (reporteForm.controls.imagenUrl.dirty || reporteForm.controls.imagenUrl.touched)) {
+              <p class="reportes-form__error">
+                La URL de la foto es obligatoria (podrás integrarlo con subida de archivos más adelante).
+              </p>
+            }
+          </div>
+
+          <div class="reportes-form__field reportes-form__field--full">
+            <label for="descripcion">Descripción</label>
+            <textarea
+              id="descripcion"
+              rows="3"
+              formControlName="descripcion"
+              placeholder="Contanos cómo es la mascota, señas particulares y cualquier dato útil."
+            ></textarea>
+            @if (reporteForm.controls.descripcion.invalid && (reporteForm.controls.descripcion.dirty || reporteForm.controls.descripcion.touched)) {
+              <p class="reportes-form__error">
+                La descripción es obligatoria y debe tener al menos 10 caracteres.
+              </p>
+            }
+          </div>
+        </div>
+
+        <button type="submit" class="reportes-form__submit" [disabled]="reporteForm.invalid">
+          Agregar reporte
+        </button>
+      </form>
+    </section>
+  } @else {
+    <section class="reportes-form-section reportes-form-section--readonly">
+      <h2>Agregá un reporte</h2>
+      <p>
+        Para crear nuevos reportes necesitás iniciar sesión.
+        <a routerLink="/login" class="reportes-form__link">Iniciá sesión acá</a>
+        o
+        <a routerLink="/register" class="reportes-form__link">creá tu cuenta</a>.
+      </p>
+    </section>
+  }
+
+  <section class="reportes-grid" aria-label="Listado de reportes de mascotas">
+    @for (reporte of reportes(); track reporte.id) {
+      <article class="reporte-card">
+        <div class="reporte-imagen-wrapper">
+          <img
+            ngSrc="{{ reporte.imagenUrl }}"
+            width="400"
+            height="300"
+            class="reporte-imagen"
+          />
+          <span class="reporte-badge reporte-badge--estado-{{ reporte.estado }}">
+            {{ reporte.estado }}
+          </span>
+        </div>
+
+        <div class="reporte-contenido">
+          <h2 class="reporte-nombre">
+            {{ reporte.nombre }}
+          </h2>
+
+          <dl class="reporte-detalles">
+            <div class="reporte-detalle">
+              <dt>Especie</dt>
+              <dd>{{ reporte.especie }}</dd>
+            </div>
+            <div class="reporte-detalle">
+              <dt>Color</dt>
+              <dd>{{ reporte.colorPrincipal }}</dd>
+            </div>
+            <div class="reporte-detalle">
+              <dt>Zona</dt>
+              <dd>{{ reporte.zona }}</dd>
+            </div>
+            <div class="reporte-detalle">
+              <dt>Fecha</dt>
+              <dd>{{ reporte.fecha }}</dd>
+            </div>
+          </dl>
+
+          <p class="reporte-descripcion">
+            {{ reporte.descripcion }}
+          </p>
+        </div>
+      </article>
+    }
+  </section>
+</div>
+

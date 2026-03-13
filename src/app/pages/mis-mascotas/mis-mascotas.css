@@ -1,0 +1,251 @@
+.mis-mascotas-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 2.5rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.mis-mascotas-header {
+  margin-bottom: 1.5rem;
+}
+
+.mis-mascotas-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #45200b;
+}
+
+.mis-mascotas-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.mis-mascotas-form-section {
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.mis-mascotas-form-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mis-mascotas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mis-mascotas-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.mis-mascotas-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.mis-mascotas-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.mis-mascotas-form__field label {
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #45200b;
+}
+
+.mis-mascotas-form__field input,
+.mis-mascotas-form__field select,
+.mis-mascotas-form__field textarea {
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mis-mascotas-form__field input:focus,
+.mis-mascotas-form__field select:focus,
+.mis-mascotas-form__field textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+.mis-mascotas-form__error {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+.mis-mascotas-form__submit {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: #10b981;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.mis-mascotas-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.mis-mascotas-form__submit:not(:disabled):hover {
+  background-color: #059669;
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
+}
+
+.mis-mascotas-form__submit:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.mis-mascotas-lista h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mis-mascotas-lista__vacio {
+  margin: 0.5rem 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.mis-mascotas-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.mis-mascotas-card {
+  background-color: #ffffff;
+  border-radius: 0.9rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mis-mascotas-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.9rem 0.35rem;
+}
+
+.mis-mascotas-card__header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mis-mascotas-card__delete {
+  border: none;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mis-mascotas-card__delete:hover {
+  background-color: #fecaca;
+}
+
+.mis-mascotas-card__body {
+  padding: 0 0.9rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mis-mascotas-card__imagen-wrapper {
+  margin: 0.25rem 0 0.4rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+.mis-mascotas-card__imagen {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.mis-mascotas-card__detalles {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.mis-mascotas-card__detalles dt {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.mis-mascotas-card__detalles dd {
+  margin: 0;
+  color: #111827;
+}
+
+.mis-mascotas-card__descripcion {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #374151;
+}
+
+@media (max-width: 1024px) {
+  .mis-mascotas-form__grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .mis-mascotas-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .mis-mascotas-page {
+    padding-inline: 1rem;
+  }
+
+  .mis-mascotas-form-section {
+    padding-inline: 1.25rem;
+  }
+
+  .mis-mascotas-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+

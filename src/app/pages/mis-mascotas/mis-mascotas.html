@@ -1,0 +1,158 @@
+<div class="mis-mascotas-page">
+  <header class="mis-mascotas-header">
+    <h1>Mis mascotas</h1>
+    <p>Gestioná las mascotas asociadas a tu cuenta para reportes más rápidos y precisos.</p>
+  </header>
+
+  <section class="mis-mascotas-form-section" aria-label="Agregar una nueva mascota">
+    <h2>Agregar mascota</h2>
+
+    <form class="mis-mascotas-form" [formGroup]="mascotaForm" (ngSubmit)="onAgregarMascota()" novalidate>
+      <div class="mis-mascotas-form__grid">
+        <div class="mis-mascotas-form__field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre" placeholder="Nombre de la mascota" />
+          @if (mascotaForm.controls.nombre.invalid && (mascotaForm.controls.nombre.dirty || mascotaForm.controls.nombre.touched)) {
+            <p class="mis-mascotas-form__error">
+              El nombre es obligatorio y debe tener al menos 2 caracteres.
+            </p>
+          }
+        </div>
+
+        <div class="mis-mascotas-form__field">
+          <label for="especie">Especie</label>
+          <select id="especie" formControlName="especie">
+            <option value="">Seleccioná una opción</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="mis-mascotas-form__field">
+          <label for="edadAproximada">Edad aproximada</label>
+          <input
+            id="edadAproximada"
+            type="text"
+            formControlName="edadAproximada"
+            placeholder="Ej: 2 años, 6 meses"
+          />
+          @if (mascotaForm.controls.edadAproximada.invalid && (mascotaForm.controls.edadAproximada.dirty || mascotaForm.controls.edadAproximada.touched)) {
+            <p class="mis-mascotas-form__error">
+              La edad aproximada es obligatoria.
+            </p>
+          }
+        </div>
+
+        <div class="mis-mascotas-form__field">
+          <label for="colorPrincipal">Color principal</label>
+          <input
+            id="colorPrincipal"
+            type="text"
+            formControlName="colorPrincipal"
+            placeholder="Ej: Marrón y blanco"
+          />
+          @if (mascotaForm.controls.colorPrincipal.invalid && (mascotaForm.controls.colorPrincipal.dirty || mascotaForm.controls.colorPrincipal.touched)) {
+            <p class="mis-mascotas-form__error">
+              El color principal es obligatorio.
+            </p>
+          }
+        </div>
+
+        <div class="mis-mascotas-form__field mis-mascotas-form__field--full">
+          <label for="fotoUrl">URL de la foto</label>
+          <input
+            id="fotoUrl"
+            type="url"
+            formControlName="fotoUrl"
+            placeholder="https://ejemplo.com/mi-mascota.jpg"
+          />
+          @if (mascotaForm.controls.fotoUrl.invalid && (mascotaForm.controls.fotoUrl.dirty || mascotaForm.controls.fotoUrl.touched)) {
+            <p class="mis-mascotas-form__error">
+              La URL de la foto es obligatoria (podrás cambiarla por una subida real más adelante).
+            </p>
+          }
+        </div>
+
+        <div class="mis-mascotas-form__field mis-mascotas-form__field--full">
+          <label for="descripcion">Descripción</label>
+          <textarea
+            id="descripcion"
+            rows="3"
+            formControlName="descripcion"
+            placeholder="Contanos cómo es tu mascota: tamaño, comportamiento, señas particulares..."
+          ></textarea>
+          @if (mascotaForm.controls.descripcion.invalid && (mascotaForm.controls.descripcion.dirty || mascotaForm.controls.descripcion.touched)) {
+            <p class="mis-mascotas-form__error">
+              La descripción es obligatoria y debe tener al menos 10 caracteres.
+            </p>
+          }
+        </div>
+      </div>
+
+      <button type="submit" class="mis-mascotas-form__submit" [disabled]="mascotaForm.invalid">
+        Agregar mascota
+      </button>
+    </form>
+  </section>
+
+  <section class="mis-mascotas-lista" aria-label="Listado de mascotas del usuario">
+    <h2>Mis mascotas guardadas</h2>
+
+    @if (mascotas().length === 0) {
+      <p class="mis-mascotas-lista__vacio">
+        Todavía no agregaste ninguna mascota. Usá el formulario de arriba para sumar la primera.
+      </p>
+    } @else {
+      <div class="mis-mascotas-grid">
+        @for (mascota of mascotas(); track mascota.id) {
+          <article class="mis-mascotas-card">
+            <header class="mis-mascotas-card__header">
+              <h3>{{ mascota.nombre }}</h3>
+              <button
+                type="button"
+                class="mis-mascotas-card__delete"
+                (click)="onEliminarMascota(mascota.id)"
+                aria-label="Eliminar mascota {{ mascota.nombre }}"
+              >
+                Eliminar
+              </button>
+            </header>
+
+            <div class="mis-mascotas-card__body">
+              <div class="mis-mascotas-card__imagen-wrapper">
+                <img
+                  ngSrc="{{ mascota.fotoUrl }}"
+                  width="400"
+                  height="300"
+                  alt="Foto de {{ mascota.nombre }}"
+                  class="mis-mascotas-card__imagen"
+                />
+              </div>
+
+              <dl class="mis-mascotas-card__detalles">
+                <div>
+                  <dt>Especie</dt>
+                  <dd>{{ mascota.especie }}</dd>
+                </div>
+                <div>
+                  <dt>Edad</dt>
+                  <dd>{{ mascota.edadAproximada }}</dd>
+                </div>
+                <div>
+                  <dt>Color</dt>
+                  <dd>{{ mascota.colorPrincipal }}</dd>
+                </div>
+              </dl>
+
+              <p class="mis-mascotas-card__descripcion">
+                {{ mascota.descripcion }}
+              </p>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</div>
+
