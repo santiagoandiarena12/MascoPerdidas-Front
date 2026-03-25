@@ -9,11 +9,12 @@ import {
   signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { FiltrosComponent, FiltrosValues } from '../../components/filtros/filtros';
 
 @Component({
   selector: 'app-home',
-  imports: [FiltrosComponent],
+  imports: [FiltrosComponent, RouterLink],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +32,15 @@ export class HomeComponent implements AfterViewInit {
 
   toggleDrawer(): void {
     this.drawerAbierto.update((v) => !v);
+  }
+
+  scrollToMap(): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    const mapSection = document.getElementById('mapa-reportes');
+    mapSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   onFiltrosAplicados(filtros: FiltrosValues): void {

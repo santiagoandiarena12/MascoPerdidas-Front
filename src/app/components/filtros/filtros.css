@@ -1,44 +1,43 @@
 .filtros-container {
-  padding: 1.5rem;
+  padding: 1.45rem;
   font-family: inherit;
-  color: #45200b;
+  color: var(--color-text);
 }
 
 .filtros-titulo {
-  font-size: 1.375rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
   font-weight: 700;
-  margin: 0 0 1.5rem;
-  color: #45200b;
+  margin: 0 0 1.25rem;
+  color: #0f172a;
 }
 
-/* Secciones */
 .filtros-seccion {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .filtros-label {
   display: block;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.5rem;
-  color: #6b4226;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.42rem;
+  color: var(--color-text-muted);
 }
 
-/* Pills de tipo */
 .filtros-pills {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .pill {
   flex: 1;
-  padding: 0.625rem 1rem;
-  border: 2px solid #d6c9b6;
+  padding: 0.62rem 1rem;
+  border: 1px solid #d1d5db;
   border-radius: 9999px;
-  background: transparent;
-  color: #45200b;
+  background: #f9fafb;
+  color: #374151;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -46,42 +45,40 @@
 }
 
 .pill:hover {
-  border-color: #b5a08a;
+  border-color: #9ca3af;
 }
 
 .pill--perdidas {
-  background: #fee2e2;
-  border-color: #f87171;
-  color: #991b1b;
+  background: #fff1f2;
+  border-color: #fca5a5;
+  color: #b91c1c;
 }
 
 .pill--encontradas {
   background: #d1fae5;
-  border-color: #34d399;
-  color: #065f46;
+  border-color: #22c55e;
+  color: #166534;
 }
 
-/* Select dropdown */
 .filtros-select {
   width: 100%;
-  padding: 0.625rem 0.875rem;
-  border: 2px solid #d6c9b6;
-  border-radius: 0.5rem;
+  padding: 0.64rem 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.62rem;
   background: #fff;
-  color: #45200b;
+  color: #111827;
   font-size: 0.875rem;
   cursor: pointer;
   appearance: auto;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .filtros-select:focus {
   outline: none;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* Distancia chips */
 .filtros-distancia {
   display: flex;
   gap: 0.5rem;
@@ -89,11 +86,11 @@
 }
 
 .distancia-chip {
-  padding: 0.5rem 1rem;
-  border: 2px solid #d6c9b6;
-  border-radius: 0.5rem;
-  background: transparent;
-  color: #45200b;
+  padding: 0.48rem 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #f9fafb;
+  color: #374151;
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
@@ -101,29 +98,29 @@
 }
 
 .distancia-chip:hover {
-  border-color: #10b981;
+  border-color: var(--color-primary);
+  color: var(--color-primary-strong);
 }
 
 .distancia-chip--activo {
-  background: #10b981;
-  border-color: #10b981;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 
-/* Acciones */
 .filtros-acciones {
   display: flex;
   gap: 0.75rem;
-  margin-top: 1.75rem;
+  margin-top: 1.35rem;
 }
 
 .btn-limpiar {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #d6c9b6;
-  border-radius: 0.5rem;
-  background: transparent;
-  color: #45200b;
+  padding: 0.7rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.62rem;
+  background: #ffffff;
+  color: #4b5563;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -131,24 +128,27 @@
 }
 
 .btn-limpiar:hover {
-  background: #f5ede0;
+  border-color: #9ca3af;
+  color: #111827;
 }
 
 .btn-aplicar {
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   border: none;
-  border-radius: 0.5rem;
-  background: #10b981;
+  border-radius: 0.62rem;
+  background: linear-gradient(145deg, var(--color-primary), var(--color-primary-strong));
   color: #fff;
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
   transition: all 0.2s ease;
 }
 
 .btn-aplicar:hover {
-  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(37, 99, 235, 0.3);
 }
 
 .btn-aplicar:focus-visible,
@@ -156,6 +156,12 @@
 .pill:focus-visible,
 .distancia-chip:focus-visible,
 .filtros-select:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .filtros-acciones {
+    flex-direction: column;
+  }
 }

@@ -1,16 +1,17 @@
 .footer {
-  background: #FFFBF0;
-  color: #2b2b2b;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
   padding: 2rem 2rem 1.5rem 2rem;
-  font-size: 1.1rem; 
-  height: 40vh; 
-  min-height: 350px; 
+  font-size: 1.1rem;
+  height: 40vh;
+  min-height: 350px;
   box-sizing: border-box;
   margin-top: 8rem;
-  
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 .footer__inner {
@@ -19,7 +20,7 @@
   gap: 4rem;
   max-width: 1200px;
   width: 100%;
-  margin: auto; /* Esto centra este bloque vertical y horizontalmente en el espacio sobrante */
+  margin: auto;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
@@ -34,7 +35,7 @@
 }
 
 .footer__logo {
-  width: 96px; /* Logo más grande */
+  width: 96px;
   height: 96px;
   border-radius: 16px;
   object-fit: contain;
@@ -50,7 +51,7 @@
 
 .footer__name {
   font-weight: 700;
-  font-size: 1.5rem; /* Nombre más grande */
+  font-size: 1.5rem;
 }
 
 .footer__tagline {
@@ -84,12 +85,12 @@
   color: rgba(43, 43, 43, 0.85);
   text-decoration: none;
   margin-bottom: 0.8rem;
-  font-size: 1.05rem; /* Links más grandes */
+  font-size: 1.05rem;
   transition: color 0.2s ease;
 }
 
 .footer__link:hover {
-  color: #45200B;
+  color: var(--color-primary-strong);
 }
 
 .footer__bottom {
@@ -111,15 +112,19 @@
 .footer__socials {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .footer__social {
   color: rgba(43, 43, 43, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  transition: color 0.2s ease;
-  font-size: 1.1rem;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .footer__social:hover {
-  color: #45200B;
+  color: var(--color-primary-strong);
+  transform: translateY(-2px);
 }
