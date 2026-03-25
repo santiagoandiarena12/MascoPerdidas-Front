@@ -1,46 +1,50 @@
 .reportes-page {
-  padding: 1.5rem 2rem 2rem;
+  padding: 1.5rem 1.25rem 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-body);
 }
 
 .reportes-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding: 1.45rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background:
+    linear-gradient(140deg, rgba(219, 234, 254, 0.62), rgba(255, 237, 213, 0.55)),
+    #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 .reportes-header h1 {
-  font-size: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
   font-weight: 700;
   margin: 0 0 0.5rem;
-  color: #1f2933;
+  color: #0f172a;
 }
 
 .reportes-header p {
   margin: 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
   max-width: 48rem;
 }
 
 .reportes-form-section {
-  margin-bottom: 1.5rem;
-  background-color: #ffffff;
+  margin-bottom: 1.35rem;
+  background: #ffffff;
   border-radius: 1rem;
-  padding: 1.5rem 1.75rem;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  padding: 1.4rem 1.3rem;
+  box-shadow: var(--shadow-sm);
   border: 1px solid #e5e7eb;
 }
 
 .reportes-form-section h2 {
-  margin: 0 0 1rem;
-  font-size: 1.3rem;
+  margin: 0 0 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.36rem;
   font-weight: 700;
-  color: #111827;
+  color: #0f172a;
 }
 
 .reportes-form-section--readonly p {
@@ -49,7 +53,7 @@
 }
 
 .reportes-form__link {
-  color: #10b981;
+  color: var(--color-primary-strong);
   font-weight: 600;
   text-decoration: none;
 }
@@ -67,7 +71,7 @@
 .reportes-form__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 1.25rem;
+  gap: 0.9rem 1rem;
 }
 
 .reportes-form__field {
@@ -80,19 +84,19 @@
 }
 
 .reportes-form__field label {
-  margin-bottom: 0.35rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.34rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  color: #45200b;
+  color: #374151;
 }
 
 .reportes-form__field input,
 .reportes-form__field select,
 .reportes-form__field textarea {
-  border-radius: 0.6rem;
+  border-radius: 0.65rem;
   border: 1px solid #d1d5db;
-  padding: 0.55rem 0.75rem;
-  font-size: 0.95rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
   resize: vertical;
   outline: none;
   transition:
@@ -103,8 +107,8 @@
 .reportes-form__field input:focus,
 .reportes-form__field select:focus,
 .reportes-form__field textarea:focus {
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .reportes-form__error {
@@ -114,20 +118,20 @@
 }
 
 .reportes-form__submit {
-  align-self: flex-start;
+  align-self: stretch;
   margin-top: 0.25rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 0.8rem;
+  padding: 0.78rem 1.25rem;
+  border-radius: 0.75rem;
   border: none;
-  background-color: #10b981;
+  background: linear-gradient(145deg, var(--color-secondary), var(--color-secondary-strong));
   color: #ffffff;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   cursor: pointer;
   transition:
-    background-color 0.15s ease,
+    box-shadow 0.2s ease,
     box-shadow 0.15s ease,
-    transform 0.05s ease;
+    transform 0.2s ease;
 }
 
 .reportes-form__submit:disabled {
@@ -137,29 +141,36 @@
 }
 
 .reportes-form__submit:not(:disabled):hover {
-  background-color: #059669;
-  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 14px 24px rgba(234, 88, 12, 0.3);
+  transform: translateY(-1px);
 }
 
 .reportes-form__submit:not(:disabled):active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
 .reportes-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.1rem;
   align-items: stretch;
 }
 
 .reporte-card {
-  background-color: #ffffff;
-  border-radius: 0.75rem;
+  background: #ffffff;
+  border-radius: 0.9rem;
   border: 1px solid #e5e7eb;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.reporte-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
 .reporte-imagen-wrapper {
@@ -203,7 +214,8 @@
 
 .reporte-nombre {
   margin: 0;
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
   font-weight: 700;
   color: #111827;
 }
@@ -228,7 +240,7 @@
 
 .reporte-descripcion {
   margin: 0.35rem 0 0;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.4;
   color: #374151;
 }
@@ -245,7 +257,7 @@
 
 @media (max-width: 640px) {
   .reportes-page {
-    padding-inline: 1rem;
+    padding-inline: 0.9rem;
   }
 
   .reportes-grid {
@@ -253,10 +265,11 @@
   }
 
   .btn-filtros-flotante {
-    bottom: 1.25rem;
-    right: 1.25rem;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
+    bottom: 1rem;
+    right: 1rem;
+    min-height: 3rem;
+    padding: 0.65rem 0.95rem;
+    font-size: 0.84rem;
   }
 }
 
@@ -267,28 +280,28 @@
   right: 2rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
-  background: #10b981;
+  gap: 0.45rem;
+  min-height: 3.2rem;
+  padding: 0.7rem 1.1rem;
+  background: linear-gradient(145deg, var(--color-secondary), var(--color-secondary-strong));
   color: #fff;
   border: none;
-  border-radius: 9999px;
-  font-size: 0.9375rem;
-  font-weight: 700;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
-  transition: all 0.2s ease;
+  box-shadow: 0 10px 24px rgba(234, 88, 12, 0.32);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   z-index: 1000;
 }
 
 .btn-filtros-flotante:hover {
-  background: #059669;
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 14px 26px rgba(234, 88, 12, 0.36);
   transform: translateY(-2px);
 }
 
 .btn-filtros-flotante:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid #fb923c;
   outline-offset: 2px;
 }
 
@@ -296,7 +309,7 @@
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(15, 23, 42, 0.3);
   z-index: 1001;
   animation: fadeIn 0.2s ease;
 }
@@ -309,11 +322,12 @@
   bottom: 0;
   width: 360px;
   max-width: 90vw;
-  background: #fffbf0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
   z-index: 1002;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  box-shadow: -18px 0 30px rgba(15, 23, 42, 0.14);
   overflow-y: auto;
 }
 
@@ -336,17 +350,18 @@
   border: none;
   border-radius: 0.5rem;
   background: transparent;
-  color: #45200b;
+  color: var(--color-text);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .drawer-cerrar:hover {
-  background: #f0e6d4;
+  background: #eff6ff;
+  color: var(--color-primary-strong);
 }
 
 .drawer-cerrar:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

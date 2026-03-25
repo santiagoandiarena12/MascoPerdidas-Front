@@ -37,7 +37,7 @@ export class MisMascotasComponent implements OnInit {
       edadAproximada: '2 años',
       colorPrincipal: 'Marrón y blanco',
       descripcion: 'Perra mediana, muy sociable y juguetona. Lleva collar rojo.',
-      fotoUrl: '/mock-mascotas/luna.jpg',
+      fotoUrl: 'https://cdn.shopify.com/s/files/1/0268/6861/files/Dog_Breeds_d405d8cc-bddf-4428-8359-5ea0afe46fa3_480x480.jpg?v=1656165310',
     },
     {
       id: 2,
@@ -62,6 +62,8 @@ export class MisMascotasComponent implements OnInit {
     descripcion: ['', [Validators.required, Validators.minLength(10)]],
     fotoUrl: ['', [Validators.required]],
   });
+
+  readonly mascotaAEliminar = signal<Mascota | null>(null);
 
   ngOnInit(): void {
     if (!this.auth.isAuthenticated()) {
@@ -98,8 +100,20 @@ export class MisMascotasComponent implements OnInit {
     });
   }
 
-  onEliminarMascota(id: number): void {
-    this.mascotasSignal.update((actuales) => actuales.filter((m) => m.id !== id));
+  onEliminarMascotaRequest(mascota: Mascota): void {
+    this.mascotaAEliminar.set(mascota);
+  }
+
+  confirmarEliminacion(): void {
+    const mascota = this.mascotaAEliminar();
+    if (mascota) {
+      this.mascotasSignal.update((actuales) => actuales.filter((m) => m.id !== mascota.id));
+      this.mascotaAEliminar.set(null);
+    }
+  }
+
+  cancelarEliminacion(): void {
+    this.mascotaAEliminar.set(null);
   }
 }
 

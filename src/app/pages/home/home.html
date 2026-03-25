@@ -1,26 +1,48 @@
 <div class="home-wrapper">
-  <!-- Mapa -->
-  <div class="mapa-container">
-    <h1 class="mapa-titulo">Mapa de Reportes</h1>
-    <div #mapaMascotas class="mapa"></div>
-  </div>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__content">
+      <span class="hero__kicker">Comunidad solidaria de Tandil</span>
+      <h1 id="hero-title">Encontremos a tu mascota juntos</h1>
+      <p>
+        Una plataforma confiable para reportar, buscar y compartir informacion sobre mascotas
+        perdidas o encontradas.
+      </p>
+      <div class="hero__actions">
+        <button type="button" class="hero__btn hero__btn--primary" (click)="scrollToMap()">
+          Ver mapa de reportes
+        </button>
+        <a routerLink="/reportes" class="hero__btn hero__btn--secondary">Publicar reporte</a>
+      </div>
+    </div>
+    <div class="hero__badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21c-4.1 0-8-2.4-8-5.4 0-2 1.8-3.6 4.2-3.8.8-2.1 2.3-3.5 4.2-3.5 1.9 0 3.4 1.4 4.2 3.5 2.4.2 4.2 1.8 4.2 3.8 0 3-3.9 5.4-8 5.4Z" />
+        <path d="M7.8 8.1c0 .6-.5 1.1-1.1 1.1-.6 0-1.1-.5-1.1-1.1S6.1 7 6.7 7c.6 0 1.1.5 1.1 1.1Z" />
+        <path d="M18.4 8.1c0 .6-.5 1.1-1.1 1.1s-1.1-.5-1.1-1.1.5-1.1 1.1-1.1 1.1.5 1.1 1.1Z" />
+      </svg>
+    </div>
+  </section>
 
-  <!-- Boton flotante de filtros -->
+  <section class="mapa-container" id="mapa-reportes" aria-label="Mapa de reportes de mascotas">
+    <h2 class="mapa-titulo">Mapa de reportes</h2>
+    <div #mapaMascotas class="mapa"></div>
+  </section>
+
   <button class="btn-filtros-flotante" (click)="toggleDrawer()" aria-label="Abrir filtros">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2.5"
+      stroke-width="2.3"
       stroke-linecap="round"
       stroke-linejoin="round"
     >
       <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
     </svg>
-    Filtros
+    <span>Filtros</span>
   </button>
 
   <!-- Overlay -->
@@ -28,8 +50,7 @@
     <div class="drawer-overlay" (click)="toggleDrawer()"></div>
   }
 
-  <!-- Drawer -->
-  <aside class="drawer" [class.drawer--abierto]="drawerAbierto()">
+  <aside class="drawer" [class.drawer--abierto]="drawerAbierto()" role="dialog" aria-modal="true" aria-label="Filtros de busqueda">
     <div class="drawer-header">
       <button class="drawer-cerrar" (click)="toggleDrawer()" aria-label="Cerrar filtros">
         <svg

@@ -1,40 +1,49 @@
 .mis-mascotas-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 2rem 2.5rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 1.5rem 1.25rem 2.6rem;
+  font-family: var(--font-body);
 }
 
 .mis-mascotas-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding: 1.45rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background:
+    linear-gradient(145deg, rgba(219, 234, 254, 0.58), rgba(254, 243, 199, 0.45)),
+    #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 .mis-mascotas-header h1 {
   margin: 0 0 0.5rem;
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-family: var(--font-display);
   font-weight: 700;
-  color: #45200b;
+  color: #0f172a;
 }
 
 .mis-mascotas-header p {
   margin: 0;
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 .mis-mascotas-form-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.35rem;
   background-color: #ffffff;
   border-radius: 1rem;
-  padding: 1.5rem 1.75rem;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  padding: 1.4rem 1.3rem;
+  box-shadow: var(--shadow-sm);
   border: 1px solid #e5e7eb;
 }
 
 .mis-mascotas-form-section h2 {
   margin: 0 0 1rem;
-  font-size: 1.3rem;
+  font-size: 1.36rem;
+  font-family: var(--font-display);
   font-weight: 700;
-  color: #111827;
+  color: #0f172a;
 }
 
 .mis-mascotas-form {
@@ -46,7 +55,7 @@
 .mis-mascotas-form__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 1.25rem;
+  gap: 0.9rem 1rem;
 }
 
 .mis-mascotas-form__field {
@@ -60,18 +69,18 @@
 
 .mis-mascotas-form__field label {
   margin-bottom: 0.35rem;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  color: #45200b;
+  color: #374151;
 }
 
 .mis-mascotas-form__field input,
 .mis-mascotas-form__field select,
 .mis-mascotas-form__field textarea {
-  border-radius: 0.6rem;
+  border-radius: 0.65rem;
   border: 1px solid #d1d5db;
-  padding: 0.55rem 0.75rem;
-  font-size: 0.95rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
   resize: vertical;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -80,8 +89,8 @@
 .mis-mascotas-form__field input:focus,
 .mis-mascotas-form__field select:focus,
 .mis-mascotas-form__field textarea:focus {
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .mis-mascotas-form__error {
@@ -91,17 +100,17 @@
 }
 
 .mis-mascotas-form__submit {
-  align-self: flex-start;
+  align-self: stretch;
   margin-top: 0.25rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 0.8rem;
+  padding: 0.78rem 1.25rem;
+  border-radius: 0.75rem;
   border: none;
-  background-color: #10b981;
+  background: linear-gradient(145deg, var(--color-primary), var(--color-primary-strong));
   color: #ffffff;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .mis-mascotas-form__submit:disabled {
@@ -111,19 +120,20 @@
 }
 
 .mis-mascotas-form__submit:not(:disabled):hover {
-  background-color: #059669;
-  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 14px 24px rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
 }
 
 .mis-mascotas-form__submit:not(:disabled):active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
 .mis-mascotas-lista h2 {
   margin: 0 0 0.75rem;
-  font-size: 1.3rem;
+  font-size: 1.36rem;
+  font-family: var(--font-display);
   font-weight: 700;
-  color: #111827;
+  color: #0f172a;
 }
 
 .mis-mascotas-lista__vacio {
@@ -136,17 +146,24 @@
   margin-top: 0.75rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .mis-mascotas-card {
-  background-color: #ffffff;
+  background: #ffffff;
   border-radius: 0.9rem;
   border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.mis-mascotas-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
 .mis-mascotas-card__header {
@@ -158,7 +175,8 @@
 
 .mis-mascotas-card__header h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
   font-weight: 700;
   color: #111827;
 }
@@ -172,11 +190,12 @@
   cursor: pointer;
   background-color: #fee2e2;
   color: #b91c1c;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .mis-mascotas-card__delete:hover {
-  background-color: #fecaca;
+  background-color: #fca5a5;
+  color: #7f1d1d;
 }
 
 .mis-mascotas-card__body {
@@ -220,9 +239,112 @@
 
 .mis-mascotas-card__descripcion {
   margin: 0.3rem 0 0;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.4;
   color: #374151;
+}
+
+/* Modal de confirmación */
+.mis-mascotas-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.mis-mascotas-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1.25rem;
+  padding: 2rem 1.8rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  animation: modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #e5e7eb;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.mis-mascotas-modal__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: var(--color-danger);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.2rem;
+}
+
+.mis-mascotas-modal__title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mis-mascotas-modal__text {
+  margin: 0 0 2rem;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.mis-mascotas-modal__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.mis-mascotas-modal__btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.mis-mascotas-modal__btn--cancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.mis-mascotas-modal__btn--cancel:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.mis-mascotas-modal__btn--delete {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+
+.mis-mascotas-modal__btn--delete:hover {
+  background: #b91c1c;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
 }
 
 @media (max-width: 1024px) {

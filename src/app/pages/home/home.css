@@ -1,70 +1,176 @@
 .home-wrapper {
   position: relative;
-  padding: 1rem;
+  padding: 1rem 1rem 2.5rem;
 }
 
-/* Mapa */
-.mapa-container {
-  width: 80%;
+.hero {
+  max-width: 1200px;
   margin: 0 auto;
+  min-height: 52vh;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 2.3rem 1rem 1.7rem;
+  background:
+    linear-gradient(140deg, rgba(219, 234, 254, 0.56), rgba(255, 237, 213, 0.45)),
+    #ffffff;
+  border: 1px solid #e8eef8;
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero__content {
+  max-width: 480px;
+}
+
+.hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0.8rem 0 0.85rem;
+  color: #0f172a;
+}
+
+.hero p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+.hero__actions {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hero__btn {
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease, color 0.24s ease;
+  cursor: pointer;
+}
+
+.hero__btn--primary {
+  color: #ffffff;
+  background: linear-gradient(145deg, var(--color-primary), var(--color-primary-strong));
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.23);
+}
+
+.hero__btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(37, 99, 235, 0.3);
+}
+
+.hero__btn--secondary {
+  color: var(--color-secondary-strong);
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+}
+
+.hero__btn--secondary:hover {
+  background: #ffedd5;
+}
+
+.hero__badge {
+  width: 108px;
+  height: 108px;
+  border-radius: 1.1rem;
+  display: grid;
+  place-items: center;
+  color: var(--color-secondary);
+  background: linear-gradient(155deg, #fff7ed, #eff6ff);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), var(--shadow-sm);
+}
+
+.hero__badge svg {
+  width: 56px;
+  height: 56px;
+}
+
+.mapa-container {
+  width: min(1200px, 92%);
+  margin: 1.6rem auto 0;
 }
 
 .mapa-titulo {
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
   font-weight: 700;
-  padding: 1.25rem 0;
-  color: #45200b;
+  margin: 0 0 0.85rem;
+  color: #0f172a;
 }
 
 .mapa {
-  height: 800px;
+  height: 640px;
   width: 100%;
-  border-radius: 12px;
-  border: 2px solid #ccc;
+  border-radius: 1rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
 }
 
-/* Boton flotante */
 .btn-filtros-flotante {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
-  background: #10b981;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 3.2rem;
+  padding: 0.7rem 1.1rem;
+  background: linear-gradient(145deg, var(--color-secondary), var(--color-secondary-strong));
   color: #fff;
   border: none;
-  border-radius: 9999px;
-  font-size: 0.9375rem;
-  font-weight: 700;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
-  transition: all 0.2s ease;
+  box-shadow: 0 10px 24px rgba(234, 88, 12, 0.32);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   z-index: 1000;
 }
 
 .btn-filtros-flotante:hover {
-  background: #059669;
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 14px 26px rgba(234, 88, 12, 0.36);
   transform: translateY(-2px);
 }
 
 .btn-filtros-flotante:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid #fb923c;
   outline-offset: 2px;
 }
 
-/* Overlay */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(15, 23, 42, 0.3);
   z-index: 1001;
   animation: fadeIn 0.2s ease;
 }
 
-/* Drawer */
 .drawer {
   position: fixed;
   top: 0;
@@ -72,11 +178,12 @@
   bottom: 0;
   width: 360px;
   max-width: 90vw;
-  background: #fffbf0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
   z-index: 1002;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  box-shadow: -18px 0 30px rgba(15, 23, 42, 0.14);
   overflow-y: auto;
 }
 
@@ -99,21 +206,21 @@
   border: none;
   border-radius: 0.5rem;
   background: transparent;
-  color: #45200b;
+  color: var(--color-text);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .drawer-cerrar:hover {
-  background: #f0e6d4;
+  background: #eff6ff;
+  color: var(--color-primary-strong);
 }
 
 .drawer-cerrar:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -123,10 +230,27 @@
   }
 }
 
-/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 1.8rem 1rem 1.4rem;
+  }
+
+  .hero__badge {
+    width: 84px;
+    height: 84px;
+  }
+
+  .hero__badge svg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 @media (max-width: 768px) {
   .mapa-container {
-    width: 100%;
+    width: 94%;
   }
 
   .mapa {
@@ -136,7 +260,41 @@
   .btn-filtros-flotante {
     bottom: 1.25rem;
     right: 1.25rem;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
+    min-height: 3rem;
+    padding: 0.65rem 0.95rem;
+    font-size: 0.85rem;
+  }
+
+  .drawer {
+    max-width: 100vw;
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    border-radius: 1rem;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__btn {
+    width: 100%;
+  }
+
+  .btn-filtros-flotante span {
+    display: none;
+  }
+
+  .btn-filtros-flotante {
+    width: 3rem;
+    padding: 0;
+    border-radius: 999px;
   }
 }
