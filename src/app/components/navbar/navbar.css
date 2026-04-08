@@ -40,9 +40,7 @@
   width: 46px;
   height: 46px;
   object-fit: contain;
-  border-radius: 0.7rem;
-  background: linear-gradient(145deg, #ffffff, #eff6ff);
-  box-shadow: var(--shadow-sm);
+  mix-blend-mode: multiply; /* Mezcla el fondo blanco haciéndolo transparente */
 }
 
 .navbar__links {
