@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 type EspecieMascota = 'Perro' | 'Gato' | 'Otro';
 
@@ -98,6 +99,20 @@ export class MisMascotasComponent implements OnInit {
       descripcion: '',
       fotoUrl: '',
     });
+
+    Swal.fire({
+      title: '¡Mascota registrada!',
+      text: `${nuevaMascota.nombre} se agregó a tus mascotas con éxito.`,
+      icon: 'success',
+      backdrop: 'rgba(0,0,0,0.7)',
+      customClass: {
+        popup: 'rounded-3xl'
+      },
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#3b82f6',
+      timer: 4000,
+      timerProgressBar: true
+    });
   }
 
   onEliminarMascotaRequest(mascota: Mascota): void {
@@ -115,5 +130,7 @@ export class MisMascotasComponent implements OnInit {
   cancelarEliminacion(): void {
     this.mascotaAEliminar.set(null);
   }
+
+  
 }
 

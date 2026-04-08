@@ -8,13 +8,13 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FiltrosComponent, FiltrosValues } from '../../components/filtros/filtros';
 
 @Component({
   selector: 'app-home',
-  imports: [FiltrosComponent, RouterLink],
+  imports: [FiltrosComponent, RouterLink, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

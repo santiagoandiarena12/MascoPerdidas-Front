@@ -30,9 +30,7 @@
 }
 
 .auth-card__logo {
-  border-radius: 0.9rem;
-  background: #ffffff;
-  box-shadow: var(--shadow-sm);
+  mix-blend-mode: multiply;
 }
 
 .auth-card__title {

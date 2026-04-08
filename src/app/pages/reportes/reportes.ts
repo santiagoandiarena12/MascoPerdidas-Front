@@ -3,6 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { FiltrosComponent, FiltrosValues } from '../../components/filtros/filtros';
+import Swal from 'sweetalert2';
 
 interface ReporteMascota {
   id: number;
@@ -167,6 +168,20 @@ export class ReportesComponent {
       colorPrincipal: '',
       descripcion: '',
       imagenUrl: '',
+    });
+
+    Swal.fire({
+      title: '¡Reporte subido!',
+      text: 'Todos los vecinos de Tandil acaban de ser avisados',
+      icon: 'success',
+      backdrop: 'rgba(0,0,0,0.7)',
+      customClass: {
+        popup: 'rounded-3xl' // Optional: Custom class for more rounded borders if they are needed, though SA2 default is rounded.
+      },
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#3b82f6', // Azulcito, puede ajustarse
+      timer: 4000,
+      timerProgressBar: true
     });
   }
 }

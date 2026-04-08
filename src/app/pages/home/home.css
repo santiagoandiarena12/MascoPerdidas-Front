@@ -94,21 +94,8 @@
   background: #ffedd5;
 }
 
-.hero__badge {
-  width: 108px;
-  height: 108px;
-  border-radius: 1.1rem;
-  display: grid;
-  place-items: center;
-  color: var(--color-secondary);
-  background: linear-gradient(155deg, #fff7ed, #eff6ff);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), var(--shadow-sm);
-}
 
-.hero__badge svg {
-  width: 56px;
-  height: 56px;
-}
+
 
 .mapa-container {
   width: min(1200px, 92%);
@@ -237,14 +224,9 @@
     padding: 1.8rem 1rem 1.4rem;
   }
 
-  .hero__badge {
-    width: 84px;
-    height: 84px;
-  }
-
-  .hero__badge svg {
-    width: 44px;
-    height: 44px;
+  .hero__logo {
+    width: 140px;
+    transform: translateY(0);
   }
 }
 

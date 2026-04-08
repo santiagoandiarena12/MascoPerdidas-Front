@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, Validati
 import { RouterModule } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 function passwordComplexityValidator(control: AbstractControl<string>): ValidationErrors | null {
   const value = control.value ?? '';
@@ -62,6 +63,19 @@ export class RegisterComponent {
 
     const { fullName, email, password } = this.registerForm.getRawValue();
     this.auth.register({ fullName, email, password });
+
+    Swal.fire({
+      icon: 'success',
+      title: '¡Registro exitoso!',
+      text: 'Tu cuenta ha sido creada correctamente',
+      customClass: {
+        popup: 'rounded-3xl'
+      },
+      confirmButtonText: 'Genial',
+      confirmButtonColor: '#3b82f6',
+      timer: 3000,
+      timerProgressBar: true
+    });
   }
 }
 

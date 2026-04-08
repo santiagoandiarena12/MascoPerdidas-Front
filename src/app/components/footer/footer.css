@@ -35,14 +35,14 @@
 }
 
 .footer__logo {
-  width: 96px;
-  height: 96px;
-  border-radius: 16px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
   display: block;
   transform: scale(2.2);
   transform-origin: center;
-  margin-bottom: -1.8rem;
+  margin-bottom: 0.45rem;
+  mix-blend-mode: multiply; /* Esto permite que el fondo blanco de la imagen se vuelva transparente y se mezcle con el fondo de la página */
 }
 
 .footer__logo[ngsrc] {
