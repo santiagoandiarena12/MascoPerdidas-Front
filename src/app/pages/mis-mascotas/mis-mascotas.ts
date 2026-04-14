@@ -3,18 +3,18 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { MascotasService } from '../../services/mascotas.service';
 import Swal from 'sweetalert2';
 
 type EspecieMascota = 'Perro' | 'Gato' | 'Otro';
 
-interface Mascota {
-  id: number;
+// Adaptá esta interfaz si tu backend de Spring manda propiedades distintas (ej: en vez de colorPrincipal manda 'color')
+export interface Mascota {
+  id?: number;
   nombre: string;
   especie: EspecieMascota;
-  edadAproximada: string;
-  colorPrincipal: string;
-  descripcion: string;
-  fotoUrl: string;
+  raza?: string;
+  fotoUrl?: string;
 }
 
 @Component({
@@ -29,47 +29,56 @@ export class MisMascotasComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly mascotasService = inject(MascotasService);
 
-  private readonly mascotasSignal = signal<Mascota[]>([
-    {
-      id: 1,
-      nombre: 'Luna',
-      especie: 'Perro',
-      edadAproximada: '2 años',
-      colorPrincipal: 'Marrón y blanco',
-      descripcion: 'Perra mediana, muy sociable y juguetona. Lleva collar rojo.',
-      fotoUrl: 'https://cdn.shopify.com/s/files/1/0268/6861/files/Dog_Breeds_d405d8cc-bddf-4428-8359-5ea0afe46fa3_480x480.jpg?v=1656165310',
-    },
-    {
-      id: 2,
-      nombre: 'Milo',
-      especie: 'Gato',
-      edadAproximada: '1 año',
-      colorPrincipal: 'Gris atigrado',
-      descripcion: 'Gato joven de interior, muy curioso. Está identificado con microchip.',
-      fotoUrl: '/mock-mascotas/milo.jpg',
-    },
-  ]);
+  private readonly mascotasSignal = signal<Mascota[]>([]);
 
   readonly mascotas = computed(() => this.mascotasSignal());
 
-  private nextId = 3;
-
+  // Eliminamos el nextId local porque eso ahora es responsabilidad del Backend (Base de datos ID autoincremental)
+  // ...
   readonly mascotaForm = this.fb.nonNullable.group({
-    nombre: ['', [Validators.required, Validators.minLength(2)]],
+    nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
     especie: <EspecieMascota | ''>'',
-    edadAproximada: ['', [Validators.required]],
-    colorPrincipal: ['', [Validators.required]],
-    descripcion: ['', [Validators.required, Validators.minLength(10)]],
-    fotoUrl: ['', [Validators.required]],
+    raza: ['', [Validators.maxLength(50)]],
+    fotoUrl: ['', [Validators.maxLength(255)]],
   });
 
   readonly mascotaAEliminar = signal<Mascota | null>(null);
+  readonly mostrarFormulario = signal(false);
+  readonly estaCargando = signal(true); // Manejo de estado de carga
 
   ngOnInit(): void {
     if (!this.auth.isAuthenticated()) {
       void this.router.navigateByUrl('/login');
+      return;
     }
+    this.cargarMascotas();
+  }
+
+  cargarMascotas(): void {
+    this.estaCargando.set(true);
+    // Llamada HTTP al backend usando los observables de RxJS
+    this.mascotasService.getMascotas().subscribe({
+      next: (mascotasDelBack: any) => {
+        // En un mundo ideal: `mascotasDelBack` debería ya matchar la interfaz `Mascota`
+        this.mascotasSignal.set(mascotasDelBack);
+        this.estaCargando.set(false);
+      },
+      error: (err) => {
+        console.error('No se pudo traer las mascotas del backend, quizas el back esta apagado', err);
+        
+        // Podes mockear la data en caso que de fallo si estas probando el front solo.
+        this.mascotasSignal.set([
+          { id: 1, nombre: 'Luna (Mock fallo conexión)', especie: 'Perro', raza: 'Caniche', fotoUrl: '/mock-mascotas/milo.jpg' }
+        ]);
+        this.estaCargando.set(false);
+      }
+    });
+  }
+
+  toggleFormulario(): void {
+    this.mostrarFormulario.update(v => !v);
   }
 
   onAgregarMascota(): void {
@@ -80,38 +89,38 @@ export class MisMascotasComponent implements OnInit {
 
     const value = this.mascotaForm.getRawValue();
 
-    const nuevaMascota: Mascota = {
-      id: this.nextId++,
+    // Notar que NO pasamos ID, ya que la Base de Datos es quien debe generarlo.
+    const nuevaMascota = {
       nombre: value.nombre,
       especie: (value.especie || 'Otro') as EspecieMascota,
-      edadAproximada: value.edadAproximada,
-      colorPrincipal: value.colorPrincipal,
-      descripcion: value.descripcion,
+      raza: value.raza,
       fotoUrl: value.fotoUrl,
     };
 
-    this.mascotasSignal.update((actuales) => [nuevaMascota, ...actuales]);
-    this.mascotaForm.reset({
-      nombre: '',
-      especie: '',
-      edadAproximada: '',
-      colorPrincipal: '',
-      descripcion: '',
-      fotoUrl: '',
-    });
+    // Le pegamos a Spring Boot usando el método del service (post)
+    this.mascotasService.crearMascota(nuevaMascota).subscribe({
+      next: (mascotaConfirmadaDelBack) => {
+        // En el `next`, metemos al array lo que la API nos devuelve (y ahora SÍ viene con el .id que generó MySQL/Postgres etc)
+        this.mascotasSignal.update((actuales) => [mascotaConfirmadaDelBack as Mascota, ...actuales]);
+        
+        this.mascotaForm.reset();
+        this.mostrarFormulario.set(false);
 
-    Swal.fire({
-      title: '¡Mascota registrada!',
-      text: `${nuevaMascota.nombre} se agregó a tus mascotas con éxito.`,
-      icon: 'success',
-      backdrop: 'rgba(0,0,0,0.7)',
-      customClass: {
-        popup: 'rounded-3xl'
+        Swal.fire({
+          title: '¡Mascota registrada!',
+          text: `${mascotaConfirmadaDelBack.nombre} se agregó a tus mascotas con éxito en la base de datos.`,
+          icon: 'success',
+          backdrop: 'rgba(0,0,0,0.7)',
+          customClass: { popup: 'rounded-3xl' },
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3b82f6',
+          timer: 4000,
+          timerProgressBar: true
+        });
       },
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#3b82f6',
-      timer: 4000,
-      timerProgressBar: true
+      error: () => {
+        Swal.fire('Error', 'Hubo un error conectando con el servidor', 'error');
+      }
     });
   }
 
@@ -121,9 +130,19 @@ export class MisMascotasComponent implements OnInit {
 
   confirmarEliminacion(): void {
     const mascota = this.mascotaAEliminar();
-    if (mascota) {
-      this.mascotasSignal.update((actuales) => actuales.filter((m) => m.id !== mascota.id));
-      this.mascotaAEliminar.set(null);
+    
+    if (mascota && mascota.id) {
+      // Disparamos peticion HTTP DELETE /api/mascotas/:id
+      this.mascotasService.eliminarMascota(mascota.id).subscribe({
+        next: () => {
+          this.mascotasSignal.update((actuales) => actuales.filter((m) => m.id !== mascota.id));
+          this.mascotaAEliminar.set(null);
+        },
+        error: () => {
+          Swal.fire('Error', 'No se pudo eliminar la mascota. Verificá la base de datos.', 'error');
+          this.mascotaAEliminar.set(null);
+        }
+      });
     }
   }
 
