@@ -30,6 +30,7 @@ export class ReportesComponent {
 
   protected readonly isAuthenticated = this.auth.isAuthenticated;
   drawerAbierto = signal(false);
+  mostrarFormulario = signal(false);
 
   private readonly reportesSignal = signal<ReporteMascota[]>([
     {
@@ -120,6 +121,10 @@ export class ReportesComponent {
     this.drawerAbierto.set(false);
   }
 
+  toggleFormulario(): void {
+    this.mostrarFormulario.update(v => !v);
+  }
+
   private nextId = 7;
 
   protected readonly reporteForm = this.fb.nonNullable.group({
@@ -169,6 +174,7 @@ export class ReportesComponent {
       descripcion: '',
       imagenUrl: '',
     });
+    this.mostrarFormulario.set(false);
 
     Swal.fire({
       title: '¡Reporte subido!',

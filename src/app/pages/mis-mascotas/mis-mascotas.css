@@ -14,9 +14,21 @@
     linear-gradient(145deg, rgba(219, 234, 254, 0.58), rgba(254, 243, 199, 0.45)),
     #ffffff;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.mis-mascotas-header h1 {
+@media (min-width: 640px) {
+  .mis-mascotas-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.mis-mascotas-header__content h1 {
   margin: 0 0 0.5rem;
   font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-family: var(--font-display);
@@ -24,9 +36,27 @@
   color: #0f172a;
 }
 
-.mis-mascotas-header p {
+.mis-mascotas-header__content p {
   margin: 0;
   color: var(--color-text-muted);
+}
+
+.btn-agregar-mascota {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-agregar-mascota:hover {
+  background-color: var(--color-primary-strong);
+  transform: translateY(-1px);
 }
 
 .mis-mascotas-form-section {

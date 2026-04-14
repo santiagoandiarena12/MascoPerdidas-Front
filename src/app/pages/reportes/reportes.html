@@ -1,10 +1,19 @@
 <div class="reportes-page">
   <header class="reportes-header">
-    <h1>Reportes de mascotas</h1>
-    <p>
-      Vista preliminar con reportes de ejemplo. Próximamente se conectará con los datos reales que
-      envíen las personas usuarias.
-    </p>
+    <div class="reportes-header__content">
+      <h1>Reportes de mascotas</h1>
+      <p>
+        Vista preliminar con reportes de ejemplo. Próximamente se conectará con los datos reales que
+        envíen las personas usuarias.
+      </p>
+    </div>
+    <button type="button" class="btn-agregar-reporte" (click)="toggleFormulario()">
+      @if (mostrarFormulario()) {
+        Cancelar
+      } @else {
+        + Nuevo reporte
+      }
+    </button>
   </header>
 
   <!-- Boton flotante de filtros -->
@@ -53,11 +62,12 @@
     <app-filtros (filtrosAplicados)="onFiltrosAplicados($event)" />
   </aside>
 
-  @if (isAuthenticated()) {
-    <section class="reportes-form-section" aria-label="Agregar un nuevo reporte de mascota">
-      <h2>Agregar reporte</h2>
+  @if (mostrarFormulario()) {
+    @if (isAuthenticated()) {
+      <section class="reportes-form-section" aria-label="Agregar un nuevo reporte de mascota">
+        <h2>Agregar reporte</h2>
 
-      <form
+        <form
         class="reportes-form"
         [formGroup]="reporteForm"
         (ngSubmit)="onAgregarReporte()"
@@ -188,16 +198,17 @@
         </button>
       </form>
     </section>
-  } @else {
-    <section class="reportes-form-section reportes-form-section--readonly">
-      <h2>Agregá un reporte</h2>
-      <p>
-        Para crear nuevos reportes necesitás iniciar sesión.
-        <a routerLink="/login" class="reportes-form__link">Iniciá sesión acá</a>
-        o
-        <a routerLink="/register" class="reportes-form__link">creá tu cuenta</a>.
-      </p>
-    </section>
+    } @else {
+      <section class="reportes-form-section reportes-form-section--readonly">
+        <h2>Agregá un reporte</h2>
+        <p>
+          Para crear nuevos reportes necesitás iniciar sesión.
+          <a routerLink="/login" class="reportes-form__link">Iniciá sesión acá</a>
+          o
+          <a routerLink="/register" class="reportes-form__link">creá tu cuenta</a>.
+        </p>
+      </section>
+    }
   }
 
   <section class="reportes-grid" aria-label="Listado de reportes de mascotas">
